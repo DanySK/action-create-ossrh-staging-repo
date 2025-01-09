@@ -27,11 +27,12 @@ This composite action creates a **Sonatype staging repository** on Maven Central
 
 ## Inputs
 
-| Name                      | Description                                                     | Required | Default                |
-|---------------------------|-----------------------------------------------------------------|----------|------------------------|
-| `group-id`               | The groupId used for the staging repository                     | false    | `org.danilopianini`    |
-| `maven-central-username` | Sonatype Username for Maven Central                             | true     | —                      |
-| `maven-central-password` | Sonatype Password for Maven Central                             | true     | —                      |
+| Name                      | Description                                                                     | Required | Default                                          |
+|---------------------------|---------------------------------------------------------------------------------|----------|--------------------------------------------------|
+| `group-id`               | The groupId used for the staging repository                                     | **Yes**  | —                                                |
+| `maven-central-username` | Sonatype Username for Maven Central                                             | **Yes**  | —                                                |
+| `maven-central-password` | Sonatype Password for Maven Central                                             | **Yes**  | —                                                |
+| `description`            | Staging repo description. If empty, defaults at runtime to `"Staging repository for [group-id]"` | No       | `"Staging repository for ${{ inputs.group-id }}"` (not evaluated in metadata) |
 
 ---
 
@@ -57,6 +58,7 @@ jobs:
           group-id: "org.danilopianini"
           maven-central-username: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           maven-central-password: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          # description: "Custom description if desired"
       - name: Use staging repo ID
         run: |
           echo "New staging repository ID is: ${{ steps.create-staging-repo.outputs.staging-repo-id }}"
