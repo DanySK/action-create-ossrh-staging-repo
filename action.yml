@@ -18,7 +18,6 @@ inputs:
   description:
     description: "Staging repo description. Defaults to 'Staging repository for ${{ inputs.group-id }}'
     required: false
-    default: "Staging repository for ${{ inputs.group-id }}"
 
 # Define the outputs
 outputs:
