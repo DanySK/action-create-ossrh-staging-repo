@@ -15,7 +15,7 @@ inputs:
   maven-central-password:
     description: "Sonatype Password for Maven Central."
     required: true
-  description:
+  repo-description:
     description: "Staging repo description. Defaults to 'Staging repository for ${{ inputs.group-id }}'
     required: false
 
@@ -34,7 +34,7 @@ runs:
       env:
         GROUP_ID: ${{ inputs.group-id }}
         CREDENTIALS: ${{ inputs.maven-central-username }}:${{ inputs.maven-central-password }}
-        DESCRIPTION: ${{ inputs.description }}
+        DESCRIPTION: ${{ inputs.repo-description }}
       run: |
         # Create a staging repository
       
