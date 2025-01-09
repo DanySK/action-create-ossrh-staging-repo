@@ -1,3 +1,23 @@
+## [1.0.1](https://github.com/DanySK/action-create-ossrh-staging-repo/compare/1.0.0...1.0.1) (2025-01-09)
+
+### Bug Fixes
+
+* avoid environment pollution ([108d3e3](https://github.com/DanySK/action-create-ossrh-staging-repo/commit/108d3e332aa92fa802b0d2497687d534435eebca))
+* fix bug in jq parsing ([32818ef](https://github.com/DanySK/action-create-ossrh-staging-repo/commit/32818ef1fb474bfb9d8477a54e8965dd08289974))
+
+### Documentation
+
+* fix usage instructions ([aa2b27f](https://github.com/DanySK/action-create-ossrh-staging-repo/commit/aa2b27f7ce3929860e38b62cefa256874407753e))
+
+### Build and continuous integration
+
+* add multi-os testing ([8bcb114](https://github.com/DanySK/action-create-ossrh-staging-repo/commit/8bcb114573ae659d38a6816bbd75a3cd1d4cd22e))
+* always use bash ([46b1393](https://github.com/DanySK/action-create-ossrh-staging-repo/commit/46b139305a505905bcd2d95f8de53142c9f61669))
+* configure mergify ([a82fdd4](https://github.com/DanySK/action-create-ossrh-staging-repo/commit/a82fdd47f3e02aa08da52ea64a72dfc1f649d1e3))
+* retry multi-os ([9b953db](https://github.com/DanySK/action-create-ossrh-staging-repo/commit/9b953dbba7b3eb7663bfa79e284defacaee53edb))
+* switch to an action to drop the repo ([6d7f8c4](https://github.com/DanySK/action-create-ossrh-staging-repo/commit/6d7f8c44f4e6e64942b54b5f69889c5aa5f08a9f))
+* use bash only for dropping ([09e3e17](https://github.com/DanySK/action-create-ossrh-staging-repo/commit/09e3e176f50b43ad3eee00b63a9280821dcf679c))
+
 ## 1.0.0 (2025-01-09)
 
 ### Features
