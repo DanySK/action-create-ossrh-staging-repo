@@ -16,7 +16,7 @@ inputs:
     description: "Sonatype Password for Maven Central."
     required: true
   repo-description:
-    description: "Staging repo description. Defaults to 'Staging repository for ${{ inputs.group-id }}'"
+    description: "Staging repo description. Defaults to 'Staging repository for [group-id]'"
     required: false
 
 # Define the outputs
