@@ -1,3 +1,20 @@
+## [1.1.0](https://github.com/DanySK/action-create-ossrh-staging-repo/compare/1.0.1...1.1.0) (2025-01-09)
+
+### Features
+
+* allow custom descriptions ([8e79fd8](https://github.com/DanySK/action-create-ossrh-staging-repo/commit/8e79fd84404b935cb8da8f0d0a04f475c089a093))
+
+### Bug Fixes
+
+* fix missing quote ([d6d8dbe](https://github.com/DanySK/action-create-ossrh-staging-repo/commit/d6d8dbeae75e559fb03d6ca0f59a2d1cb9757260))
+* remove ambiguous github expression ([18731ae](https://github.com/DanySK/action-create-ossrh-staging-repo/commit/18731aeb837f36e031b4f7c809d8c1aa9c9f348e))
+* remove implicit default as it is computed at runtime ([e68362a](https://github.com/DanySK/action-create-ossrh-staging-repo/commit/e68362a308afb13fbac766671b6d3fc709eba308))
+* rename optional input ([007c07f](https://github.com/DanySK/action-create-ossrh-staging-repo/commit/007c07f64fa7c0bdf9f4009281b40f768df3df7d))
+
+### Documentation
+
+* update readme ([77e266b](https://github.com/DanySK/action-create-ossrh-staging-repo/commit/77e266be84dc1ebafa6b99bcd64541a05763b7af))
+
 ## [1.0.1](https://github.com/DanySK/action-create-ossrh-staging-repo/compare/1.0.0...1.0.1) (2025-01-09)
 
 ### Bug Fixes
