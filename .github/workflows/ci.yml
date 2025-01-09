@@ -20,7 +20,7 @@ jobs:
           maven-central-password: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
       - name: Drop staging repository
         run: |
-          echo "Dropping staging repo: ${{ steps.create-staging-repo.outputs.staging-repo-id }}"
+          echo "::debug::Dropping staging repo: ${{ steps.create-staging-repo.outputs.staging-repo-id }}"
           curl \
             --request POST \
             --url "https://s01.oss.sonatype.org/service/local/staging/bulk/drop" \
@@ -28,8 +28,7 @@ jobs:
             --header "Content-Type: application/json" \
             --data '{"data":{"stagedRepositoryIds":["'${{ steps.create-staging-repo.outputs.staging-repo-id }}'"]}}' \
             --user "${{ secrets.MAVEN_CENTRAL_USERNAME }}:${{ secrets.MAVEN_CENTRAL_PASSWORD }}" \
-            --verbose
-          - name: Install Node
+      - name: Install Node
       - uses: actions/setup-node@v4.1.0
         with:
           node-version-file: package.json
