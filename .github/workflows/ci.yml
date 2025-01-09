@@ -23,17 +23,14 @@ jobs:
           group-id: org.danilopianini
           maven-central-username: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           maven-central-password: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+      - shell: bash
+        run: '[ -z "${{ steps.create-staging-repo.outputs.staging-repo-id }}" ] && exit 1 || echo "OK"'
       - name: Drop staging repository
-        shell: bash
-        run: |
-          echo "::debug::Dropping staging repo: ${{ steps.create-staging-repo.outputs.staging-repo-id }}"
-          curl \
-            --request POST \
-            --url "https://s01.oss.sonatype.org/service/local/staging/bulk/drop" \
-            --header "Accept: application/json" \
-            --header "Content-Type: application/json" \
-            --data '{"data":{"stagedRepositoryIds":["'${{ steps.create-staging-repo.outputs.staging-repo-id }}'"]}}' \
-            --user "${{ secrets.MAVEN_CENTRAL_USERNAME }}:${{ secrets.MAVEN_CENTRAL_PASSWORD }}" \
+        uses: danysk/action-drop-ossrh-staging-repo@1.0.0
+        with:
+          repo-id: ${{ steps.create-staging-repo.outputs.staging-repo-id }}
+          maven-central-username: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          maven-central-password: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
       - name: Install Node
         uses: actions/setup-node@v4.1.0
         if: runner.os == 'linux'
