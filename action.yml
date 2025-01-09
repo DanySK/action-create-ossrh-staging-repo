@@ -39,7 +39,7 @@ runs:
         RESPONSE=$(curl -u "$CREDENTIALS" -s "$NEXUS_URL" -H "Accept: application/json")
         echo "::debug::Response:"
         echo "::debug::$RESPONSE"
-        PROFILE_ID=$(echo "$RESPONSE" | jq -r --arg GROUP_ID "${{ inputs.group-id }}" '.data[] | select(.name == ${{ inputs.group-id }}) | .id')
+        PROFILE_ID=$(echo "$RESPONSE" | jq -r --arg GROUP_ID "${{ inputs.group-id }}" '.data[] | select(.name == $GROUP_ID) | .id')
         if [[ -z "$PROFILE_ID" ]]; then
           echo "Failed to fetch profile ID for group ID ${{ inputs.group-id }}."
           exit 1
