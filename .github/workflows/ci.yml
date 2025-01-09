@@ -1,0 +1,37 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - '**'  # Run on all branches
+
+jobs:
+  success:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4.2.2
+      - name: Create staging repository
+        id: create-staging-repo
+        uses: .
+        with:
+          group-id: org.danilopianini
+          maven-central-username: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          maven-central-password: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+      - name: Drop staging repository
+        run: |
+          echo "Dropping staging repo: ${{ steps.create-staging-repo.outputs.staging-repo-id }}"
+          curl \
+            --request POST \
+            --url "https://s01.oss.sonatype.org/service/local/staging/bulk/drop" \
+            --header "Accept: application/json" \
+            --header "Content-Type: application/json" \
+            --data '{"data":{"stagedRepositoryIds":["'${{ steps.create-staging-repo.outputs.staging-repo-id }}'"]}}' \
+            --user "${{ secrets.MAVEN_CENTRAL_USERNAME }}:${{ secrets.MAVEN_CENTRAL_PASSWORD }}" \
+            --verbose
+          - name: Install Node
+      - uses: actions/setup-node@v4.1.0
+        with:
+          node-version-file: package.json
+      - run: npm install
+      - run: npx semantic-release
