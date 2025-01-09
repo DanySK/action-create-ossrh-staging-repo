@@ -20,12 +20,14 @@ inputs:
 outputs:
   staging-repo-id:
     description: "The ID of the newly created staging repository."
+    value: ${{ steps.create-staging-repo.outputs.staging-repo-id }}
 
 runs:
   using: "composite"
   steps:
     - name: "Create a staging repository"
       shell: bash
+      id: create-staging-repo
       env:
         GROUP_ID: ${{ inputs.group-id }}
         MAVEN_CENTRAL_USERNAME: ${{ inputs.maven-central-username }}
