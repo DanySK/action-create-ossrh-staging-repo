@@ -28,24 +28,20 @@ runs:
     - name: "Create a staging repository"
       shell: bash
       id: create-staging-repo
-      env:
-        GROUP_ID: ${{ inputs.group-id }}
-        MAVEN_CENTRAL_USERNAME: ${{ inputs.maven-central-username }}
-        MAVEN_CENTRAL_PASSWORD: ${{ inputs.maven-central-password }}
       run: |
         # Define the API URL and request payload
         NEXUS_URL="https://s01.oss.sonatype.org/service/local/staging/profiles"
-        CREDENTIALS="${MAVEN_CENTRAL_USERNAME}:${MAVEN_CENTRAL_PASSWORD}"
-        PAYLOAD="{\"data\":{\"description\":\"Staging repository for $GROUP_ID\"}}"
+        CREDENTIALS="${{ inputs.maven-central-username }}:${{ inputs.maven-central-password }}"
+        PAYLOAD="{\"data\":{\"description\":\"Staging repository for ${{ inputs.group-id }}\"}}"
 
         echo "::debug::Fetching available staging profiles..."
         # Fetch the profile ID for the group ID
         RESPONSE=$(curl -u "$CREDENTIALS" -s "$NEXUS_URL" -H "Accept: application/json")
         echo "::debug::Response:"
         echo "::debug::$RESPONSE"
-        PROFILE_ID=$(echo "$RESPONSE" | jq -r --arg GROUP_ID "$GROUP_ID" '.data[] | select(.name == $GROUP_ID) | .id')
+        PROFILE_ID=$(echo "$RESPONSE" | jq -r --arg GROUP_ID "${{ inputs.group-id }}" '.data[] | select(.name == ${{ inputs.group-id }}) | .id')
         if [[ -z "$PROFILE_ID" ]]; then
-          echo "Failed to fetch profile ID for group ID $GROUP_ID."
+          echo "Failed to fetch profile ID for group ID ${{ inputs.group-id }}."
           exit 1
         fi
         echo "::debug::Found profile ID $PROFILE_ID"
