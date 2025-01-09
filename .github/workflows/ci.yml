@@ -13,9 +13,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     permissions:
       contents: write
-    defaults:
-      run:
-        shell: bash
     steps:
       - name: Check out code
         uses: actions/checkout@v4.2.2
@@ -27,6 +24,7 @@ jobs:
           maven-central-username: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           maven-central-password: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
       - name: Drop staging repository
+        shell: bash
         run: |
           echo "::debug::Dropping staging repo: ${{ steps.create-staging-repo.outputs.staging-repo-id }}"
           curl \
