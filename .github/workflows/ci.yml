@@ -26,7 +26,7 @@ jobs:
       - shell: bash
         run: '[ -z "${{ steps.create-staging-repo.outputs.staging-repo-id }}" ] && exit 1 || echo "OK"'
       - name: Drop staging repository
-        uses: danysk/action-drop-ossrh-staging-repo@1.0.0
+        uses: danysk/action-drop-ossrh-staging-repo@1.0.3
         with:
           repo-id: ${{ steps.create-staging-repo.outputs.staging-repo-id }}
           maven-central-username: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
