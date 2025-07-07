@@ -1,3 +1,7 @@
+# Important notice
+
+> This action is no loger maintained, as Maven Central OSSRH has been sunsetted
+
 # Create OSSRH Staging Repository GitHub Action
 
 ![Action: Create Staging Repository](https://img.shields.io/badge/Action-Create%20Staging%20Repository-blueviolet?logo=github)
